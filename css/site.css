@@ -1,0 +1,38 @@
+* {
+    border: none;
+}
+
+body {
+    background-color: #222;
+    color: #fff;
+    font-family: 'Source Code Pro';
+}
+
+.bg-darker {
+    background-color: #222;
+}
+
+.text-darker {
+    color: #757575 !important;
+}
+
+.card {
+    border: none;
+    box-shadow: 10px 10px 0px rgba(0, 0, 0, 0.4);
+    padding: 15px;
+    min-height: 210px;
+}
+
+kbd {
+    padding: 4px;
+    color: #757575;
+    background-color: #222;
+    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.4);
+    margin-right: -5px;
+    margin-left: -5px;
+}
+
+ul {
+    list-style: none;
+    margin: 0px;
+}
