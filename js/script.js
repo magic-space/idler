@@ -53,9 +53,58 @@ class ActionModal {
   }
 }
 
+class SelectionModal {
+  constructor() {
+    this.modal = document.getElementById("SelectionModal");
+    this.title = document.getElementById("SelectionModalTitle");
+    this.body = document.getElementById("SelectionModalBody");
+    this.choiceGroup = document.getElementById("SelectionModalChoices");
+  }
+
+  open() {
+    this.modal.classList.add("active");
+  }
+
+  close() {
+    this.modal.classList.remove("active");
+  }
+  
+  setTitle(title) {
+    this.title.innerHTML = title;
+  }
+
+  setBody(html) {
+    this.body.innerHTML = html;
+  }
+
+  setChoices(choices) {
+    this.choiceGroup.innerHTML = '';
+
+    for(let choice of choices) {
+      let btn = document.createElement("BUTTON");
+      btn.classList.add("d-block", "btn");
+      btn.innerHTML = choice.buttonTitle;
+
+      let self = this;
+
+      btn.onclick = () => {
+        self.close();
+        choice.onSelected();
+      }
+
+      if(choice.class) {
+        btn.classList.add(choice.class);
+      }
+
+      this.choiceGroup.appendChild(btn);
+    }
+  }
+}
+
 class UserInterface {
   constructor() {
     this.action = new ActionModal();
+    this.selection = new SelectionModal();
   }
 }
 
@@ -97,6 +146,23 @@ class TimedAction {
       action.stop();
       action.details.onCompleted(action.details);
     }
+  }
+}
+
+class UserSelection {
+  constructor(details) {
+    this.details = details;
+  }
+
+  start() {
+    UI.selection.setTitle(this.details.title);
+    UI.selection.setBody(this.details.body);
+    UI.selection.setChoices(this.details.choices);
+    UI.selection.open();
+  }
+
+  stop() {
+    UI.selection.close();
   }
 }
 

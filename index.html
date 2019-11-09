@@ -53,14 +53,19 @@
     </div>
   </div>
 
-  <div class="modal modal-lg">
+  <div class="modal modal-lg" id="SelectionModal">
     <div class="modal-overlay"></div>
     <div class="modal-container">
-      <h1>Dialog</h1>
-      <img id="ActionImage" src="https://via.placeholder.com/1280x720" height="450" style="margin: auto;">
-      <progress class="progress" value="0" max="100" id="ActionProgress"></progress>
-      <span id="ActionSecondsRemaining">Loading...</span>
-      <button class="btn btn-danger" id="ActionCancelButton">Cancel</button>
+      <h1 id="SelectionModalTitle">Dialog</h1>
+      <div id="SelectionModalBody">
+        <p>Please select an option:</p>
+      </div>
+      <div id="SelectionModalChoices">
+        <button class="d-block btn btn-primary ">This is a primary choice</button>
+        <button class="d-block btn">This is a default choice</button>
+        <button class="d-block btn btn-success">This is a success choice</button>
+        <button class="d-block btn btn-error">This is a error choice</button>
+      </div>
     </div>
   </div>
 </body>
