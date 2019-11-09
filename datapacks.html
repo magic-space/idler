@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="css/spectre.min.css">
+  <link rel="stylesheet" href="css/spectre-exp.min.css">
+  <link rel="stylesheet" href="css/spectre-icons.min.css">
+  <link rel="stylesheet" href="css/site.css">
+  <style>
+    body {
+      margin: 1em;
+    }
+  </style>
+  <title>How to make a Datapack</title>
+</head>
+
+<body>
+  <h2>What are Datapacks?</h2>
+
+  <p>
+    Datapacks are the content of your idle game.
+    they define what actions are names, what they do,
+    how long actions last, what happens after they're
+    done, and of course any other arbitrary JavaScript
+    logic you might want to implement.
+  </p>
+
+  <h2>How to write Datapack?</h2>
+
+  <h3>Action Detail</h3>
+
+  <p>
+    Action detail is an object representing the way waiting for 
+    an action is displayed.
+
+    After you click an action button, the popup uses Action detail
+    to construct the waiting view.
+  </p>
+
+  <p>An action detail object has the following structure:</p>
+
+  <p><code>title:</code> A string representing the title of the action.</p>
+  <p><code>imageUrl:</code> A URL of the image displayed while the action executes.</p>
+  <p><code>secondsRemaining:</code> A positive <strong>integer</strong> representing how long (in seconds) the action takes to finish executing.</p>
+  <p><code>onCompleted:</code> A JavaScript <strong>function</strong> that triggers after the action fully executes and the modal closes.</p>
+  <p><code>onCancelled:</code> A JavaScript <strong>function</strong> that triggers when the action gets cancelled by the user.</p>
+
+  <p>When a function is required, the system already has defined a <code>noop</code> function that does nothing, so feel free to use it.</p>
+
+  <h3>Creating an Action</h3>
+
+  <p>While action <strong>details</strong> define the way an action looks while executing, an action itself has to defined for it to have a clickable button.</p>
+
+  <p>You can add an action button by <code>push</code>ing a new action object into the global <code>DataPacks.actions</code> array.</p>
+
+  <p>An action object has the following format:</p>
+
+  <p><code>buttonTitle:</code> A string defining the action button's text.</p>
+  <p><code>details:</code> an <strong>Action Details</strong> object with the structure defined earlier in this guide.</p>
+  <p><code>requiredFlag:</code> an <strong>OPTIONAL</strong> name of a flag the <code>Account</code> global object has to have set in order for this button to display.</p>
+  <p><code>blockingFlag:</code> an <strong>OPTIONAL</strong> name of a flag the <code>Account</code> global object <b>cannot</b> have set in order for this button to display.</p>
+
+  <pre class="code" data-lang="JavaScript"><code>
+
+// ========================================
+// Helping constants for long image URLs.
+// ========================================
+const forestImage = "https://get.wallhere.com/photo/forest-waterfall-video-games-rock-nature-artwork-RPG-cave-jungle-Dragon-Age-Bioware-rainforest-Dragon-Age-Inquisition-Formation-ravine-Inquisition-Terrain-1920x1080-px-landform-geographical-feature-water-feature-712853.jpg";
+const witchcraftImage = "https://i.pinimg.com/originals/b5/9c/bb/b59cbb9edb48f72eeb913fde06e905e5.jpg";
+
+// ========================================
+// Action details 
+// ========================================
+let _ActionDetails = [
+  {
+    title: "Traveling to the totem of knowledge or something...",
+    imageUrl: forestImage,
+    secondsRemaining: 20,
+    onCompleted: () => {
+      new TimedAction(Object.assign({}, _ActionDetails[1])).start();
+    },
+    onCancelled: noop
+  },
+  {
+    title: "Practicing Witchcraft",
+    imageUrl: witchcraftImage,
+    secondsRemaining: 30,
+    onCompleted: () => {
+      alert("You successfuly practiced witchcraft.");
+    },
+    onCancelled: noop
+  }
+];
+
+// ========================================
+// Adding clickable actions
+// ========================================
+DataPacks.actions.push({
+  buttonTitle: 'Practice Witchcraft',
+  details: _ActionDetails[0]
+});
+
+</code></pre>
+
+<h2>JavaScript functions</h2>
+
+<p>These are the predefined functions you can use to implement logic in your DataPacks.</p>
+
+<p><code>blockingFlag:</code> an <strong>OPTIONAL</strong> name of a flag the <code>Account</code> global object <b>cannot</b> have set in order for this button to display.</p>
+
+<p><code>Account.setFlag("SomeFlagName")</code> Sets an account flag. If buttons requiring this flags were not visible before, they will be after the flag is set. And actions that have this flag as blocking will disappear.</p>
+<p><code>Account.setFlag("SomeFlagName", false)</code> A way to unset a flag.</p>
+<p><code>Account.getFlag("SomeFlagName")</code> returns <code>true</code> or <code>false</code> representing if the flag is set.</p>
+
+</body>
+
+</html>
