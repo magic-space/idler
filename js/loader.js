@@ -20,8 +20,26 @@ function ReloadAvailableActions() {
 }
 
 function LoadCustomDatapackCode() {
+  if(document.getElementById("CustomDataPackFromFile")) {
+    var file = document.getElementById("CustomDataPackFile").files[0];
+    if (file) {
+        var reader = new FileReader();
+        reader.readAsText(file, "UTF-8");
+        reader.onload = function (evt) {
+            eval(evt.target.result);
+            ReloadAvailableActions();
+            HideFormIfRequested();
+        };
+    }
+    return;
+  }
+
   eval(document.getElementById("CustomDataPackCode").value);
   ReloadAvailableActions();
+  HideFormIfRequested();
+}
+
+function HideFormIfRequested() {
   if(document.getElementById("CustomDataPackHideForm").checked) {
     document.getElementById("CustomDataPackForm").innerHTML = '';
   }

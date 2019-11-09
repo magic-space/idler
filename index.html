@@ -27,12 +27,18 @@
               <a href="datapacks.html"><span class="chip">How to make a DataPack</span></a>
               <label class="form-label" for="CustomDataPackCode">Paste your DataPack code bellow:</label>
               <textarea class="form-input" id="CustomDataPackCode" placeholder="Your Datapack code here" rows="3"></textarea>
+              <div class="divider text-center" data-content="OR"></div>
+              <input id="CustomDataPackFile" type="file" class="form-input" placeholder="DataPack file">
             </div>
           </div>
           <div class="card-footer">
             <label class="form-switch float-left">
               <input type="checkbox" id="CustomDataPackHideForm" checked>
               <i class="form-icon"></i> Hide this form after loading.
+            </label>
+            <label class="form-switch float-left">
+              <input type="checkbox" id="CustomDataPackFromFile">
+              <i class="form-icon"></i> Use file picker.
             </label>
             <button class="btn btn-action s-circle float-right" onclick="LoadCustomDatapackCode();"><i class="icon icon-plus"></i></button>
           </div>
