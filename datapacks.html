@@ -61,47 +61,23 @@
   <p><code>requiredFlag:</code> an <strong>OPTIONAL</strong> name of a flag the <code>Account</code> global object has to have set in order for this button to display.</p>
   <p><code>blockingFlag:</code> an <strong>OPTIONAL</strong> name of a flag the <code>Account</code> global object <b>cannot</b> have set in order for this button to display.</p>
 
-  <pre class="code" data-lang="JavaScript"><code>
+  <h3>Selection Detail</h3>
 
-// ========================================
-// Helping constants for long image URLs.
-// ========================================
-const forestImage = "https://get.wallhere.com/photo/forest-waterfall-video-games-rock-nature-artwork-RPG-cave-jungle-Dragon-Age-Bioware-rainforest-Dragon-Age-Inquisition-Formation-ravine-Inquisition-Terrain-1920x1080-px-landform-geographical-feature-water-feature-712853.jpg";
-const witchcraftImage = "https://i.pinimg.com/originals/b5/9c/bb/b59cbb9edb48f72eeb913fde06e905e5.jpg";
+  <p>Selection details allow you to get a decision from the player. This could be used to implement a shop system, branching paths, dialogs, or any other form of choice you might want to implement.</p>
 
-// ========================================
-// Action details 
-// ========================================
-let _ActionDetails = [
-  {
-    title: "Traveling to the totem of knowledge or something...",
-    imageUrl: forestImage,
-    secondsRemaining: 20,
-    onCompleted: () => {
-      new TimedAction(Object.assign({}, _ActionDetails[1])).start();
-    },
-    onCancelled: noop
-  },
-  {
-    title: "Practicing Witchcraft",
-    imageUrl: witchcraftImage,
-    secondsRemaining: 30,
-    onCompleted: () => {
-      alert("You successfuly practiced witchcraft.");
-    },
-    onCancelled: noop
-  }
-];
+  <p>Much like Action details, it is an object that has the following structure:</p>
 
-// ========================================
-// Adding clickable actions
-// ========================================
-DataPacks.actions.push({
-  buttonTitle: 'Practice Witchcraft',
-  details: _ActionDetails[0]
-});
+  <p><code>title:</code> a <strong>string</strong> that will be displayed on top of the Selection dialog.</p>
+  <p><code>body:</code> any <strong>HTML string</strong> representing the content of the Selection dialog. Ask a question here, show an image, or do something cool.</p>
+  <p><code>choices:</code> an <strong>Array</strong> of choice objects.</p>
 
-</code></pre>
+  <h4>Choice object structure</h4>
+
+  <p><code>buttonTitle:</code> a <strong>string</strong> displayed on the current choice button.</p>
+  <p><code>class:</code> any <strong>CSS class</strong> you want your button to have. It's common to use <code>btn-primary</code>, <code>btn-success</code> or <code>btn-error</code>, but any CSS class will work. (to add more classes, turn this into an array of strings)</p>
+  <p><code>onSelected:</code> a <strong>JavaScript function</strong> triggered when this choice is selected.</p>
+
+  <p>View an example DataPack <a href="js/adventure.datapack.js">HERE</a>.</p>
 
 <h2>JavaScript functions</h2>
 
