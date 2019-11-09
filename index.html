@@ -13,9 +13,33 @@
 </head>
 
 <body>
-  <div id="ActionList">
-    
+  <div class="columns col-gapless mt-2">
+    <div class="column col-2"></div>
+    <div class="column col-8">
+      <div id="ActionList"></div>
+      <div class="card" id="CustomDataPackForm">
+          <div class="card-header">
+            <div class="card-title h5">DataPacks</div>
+            <div class="card-subtitle text-gray">Load a custom DataPack to play.</div>
+          </div>
+          <div class="card-body">
+            <div class="form-group">
+              <label class="form-label" for="CustomDataPackCode">Paste your DataPack code bellow:</label>
+              <textarea class="form-input" id="CustomDataPackCode" placeholder="Your Datapack code here" rows="3"></textarea>
+            </div>
+          </div>
+          <div class="card-footer">
+            <label class="form-switch float-left">
+              <input type="checkbox" id="CustomDataPackHideForm" checked>
+              <i class="form-icon"></i> Hide this form after loading.
+            </label>
+            <button class="btn btn-action s-circle float-right" onclick="LoadCustomDatapackCode();"><i class="icon icon-plus"></i></button>
+          </div>
+        </div>
+    </div>
+    <div class="column col-2"></div>
   </div>
+
 
   <div id="ActionModal" class="modal modal-lg">
     <div class="modal-overlay"></div>
@@ -44,15 +68,8 @@
 <script src="js/loader.js"></script>
 
 
-<div class="form-group" id="CustomDataPackForm">
-  <h3>Custom Datapack</h3>
-  <label class="form-label" for="CustomDataPackCode">Paste your datapack code bellow:</label>
-  <textarea class="form-input" id="CustomDataPackCode" placeholder="Your Datapack code here" rows="3"></textarea>
-  <label class="form-switch">
-    <input type="checkbox" id="CustomDataPackHideForm" checked>
-    <i class="form-icon"></i> Hide this form after loading.
-  </label>
-  <button class="btn btn-primary" onclick="LoadCustomDatapackCode();">Load</button>
-</div>
+
+
+
 
 </html>
