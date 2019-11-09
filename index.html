@@ -41,7 +41,18 @@
 </body>
 
 <script src="js/script.js"></script>
-<script src="js/adventure.datapack.js"></script>
 <script src="js/loader.js"></script>
+
+
+<div class="form-group" id="CustomDataPackForm">
+  <h3>Custom Datapack</h3>
+  <label class="form-label" for="CustomDataPackCode">Paste your datapack code bellow:</label>
+  <textarea class="form-input" id="CustomDataPackCode" placeholder="Your Datapack code here" rows="3"></textarea>
+  <label class="form-switch">
+    <input type="checkbox" id="CustomDataPackHideForm" checked>
+    <i class="form-icon"></i> Hide this form after loading.
+  </label>
+  <button class="btn btn-primary" onclick="LoadCustomDatapackCode();">Load</button>
+</div>
 
 </html>

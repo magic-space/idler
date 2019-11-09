@@ -19,4 +19,12 @@ function ReloadAvailableActions() {
   }
 }
 
+function LoadCustomDatapackCode() {
+  eval(document.getElementById("CustomDataPackCode").value);
+  ReloadAvailableActions();
+  if(document.getElementById("CustomDataPackHideForm").checked) {
+    document.getElementById("CustomDataPackForm").innerHTML = '';
+  }
+}
+
 ReloadAvailableActions();
